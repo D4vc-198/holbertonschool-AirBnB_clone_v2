@@ -38,7 +38,7 @@ class TestFileStorage(unittest.TestCase):
         except Exception:
             pass
 
-     def test_pep8_FileStorage(self):
+    def test_pep8_FileStorage(self):
         """Tests pep8 style"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models/engine/file_storage.py'])
@@ -63,7 +63,7 @@ class TestFileStorage(unittest.TestCase):
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(obj[key])
 
-     def test_reload_filestorage(self):
+    def test_reload_filestorage(self):
         """
         tests reload
         """
@@ -91,10 +91,22 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(line, "{}")
         self.assertIs(self.storage.reload(), None)
 
-        def test_all_method(self):
+    def test_all_method(self):
             ''' tests all method '''
             fs = FileStorage()
             new_state = State()
             fs.new(new_state)
             fs.save()
             self.assertIn(new_state, fs.all(State).values())
+
+    def test_all_no_specification(self):
+            ''' tests all when no class is passed '''
+            return True
+            fs = FileStorage()
+            new_state1 = State()
+            fs.new(new_state1)
+            fs.save()
+            new_user1 = User()
+            fs.new(new_user1)
+            fs.save()
+            self.assertEqual(8, len(fs.all()))
