@@ -44,3 +44,13 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
                      "Not using db")
+
+    def test_all(self):
+        """tests if all works in File Storage"""
+        storage = DBStorage()
+        storage.reload()
+        dict_len = len(storage.all())
+        s = State(name="test_all_state")
+        s.save()
+        storage.save()
+        self.assertIs(len(storage.all()), dict_len + 1)
