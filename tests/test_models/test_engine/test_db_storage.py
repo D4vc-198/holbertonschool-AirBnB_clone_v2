@@ -22,9 +22,9 @@ class TestDBStorage(unittest.TestCase):
     def setUpClass(cls):
         """set up for test"""
         cls.user = User()
-        cls.user.first_name = "Kev"
-        cls.user.last_name = "Yo"
-        cls.user.email = "1234@yahoo.com"
+        cls.user.first_name = "Diego"
+        cls.user.last_name = "Valdez"
+        cls.user.email = "diego1234@gmail.com"
         cls.storage = DBStorage()
 
     @classmethod
