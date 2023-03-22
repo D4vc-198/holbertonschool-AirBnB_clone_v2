@@ -25,3 +25,15 @@ class TestFileStorage(unittest.TestCase):
         cls.user.last_name = "Valdez"
         cls.user.email = "valdez123@gmail.com"
         cls.storage = FileStorage()
+
+    @classmethod
+    def teardown(cls):
+        """at the end of the test this will tear it down"""
+        del cls.user
+
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
