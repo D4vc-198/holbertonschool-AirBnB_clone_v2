@@ -14,9 +14,8 @@ from models.review import Review
 from models.engine.db_storage import DBStorage
 from os import getenv
 
-
 class TestDBStorage(unittest.TestCase):
-    """ Test DBStorage """
+    '''this will test the DBStorage'''
 
     @classmethod
     def setUpClass(cls):
@@ -24,17 +23,19 @@ class TestDBStorage(unittest.TestCase):
         cls.user = User()
         cls.user.first_name = "Diego"
         cls.user.last_name = "Valdez"
-        cls.user.email = "diego1234@gmail.com"
+        cls.user.email = "diego_v1234@gmail.com"
         cls.storage = DBStorage()
 
     @classmethod
     def teardown(cls):
+        """at the end of the test this will tear it down"""
         del cls.user
 
+    def tearDown(self):
+        """teardown"""
+        # TODO: anything? wtf!
+
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
-                        "Not using db")
-    
-        @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
                      "Not using db")
     def test_pep8_DBStorage(self):
         """Tests pep8 style"""
@@ -44,7 +45,6 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
                      "Not using db")
-
     def test_all(self):
         """tests if all works in File Storage"""
         storage = DBStorage()
