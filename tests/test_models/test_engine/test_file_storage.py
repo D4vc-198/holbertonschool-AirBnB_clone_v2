@@ -23,7 +23,7 @@ class TestFileStorage(unittest.TestCase):
         cls.user = User()
         cls.user.first_name = "Diego"
         cls.user.last_name = "Valdez"
-        cls.user.email = "valdez123@gmail.com"
+        cls.user.email = "diego_v1234@gmail.com"
         cls.storage = FileStorage()
 
     @classmethod
@@ -58,7 +58,7 @@ class TestFileStorage(unittest.TestCase):
         obj = storage.all()
         user = User()
         user.id = 123455
-        user.name = "Kevin"
+        user.name = "Diego"
         storage.new(user)
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(obj[key])
@@ -92,24 +92,24 @@ class TestFileStorage(unittest.TestCase):
         self.assertIs(self.storage.reload(), None)
 
     def test_all_method(self):
-            ''' tests all method '''
-            fs = FileStorage()
-            new_state = State()
-            fs.new(new_state)
-            fs.save()
-            self.assertIn(new_state, fs.all(State).values())
+        ''' tests all method '''
+        fs = FileStorage()
+        new_state = State()
+        fs.new(new_state)
+        fs.save()
+        self.assertIn(new_state, fs.all(State).values())
 
     def test_all_no_specification(self):
-            ''' tests all when no class is passed '''
-            return True
-            fs = FileStorage()
-            new_state1 = State()
-            fs.new(new_state1)
-            fs.save()
-            new_user1 = User()
-            fs.new(new_user1)
-            fs.save()
-            self.assertEqual(8, len(fs.all()))
+        ''' tests all when no class is passed '''
+        return True
+        fs = FileStorage()
+        new_state1 = State()
+        fs.new(new_state1)
+        fs.save()
+        new_user1 = User()
+        fs.new(new_user1)
+        fs.save()
+        self.assertEqual(8, len(fs.all()))
 
     def test_delete_method(self):
         ''' tests delete method '''
