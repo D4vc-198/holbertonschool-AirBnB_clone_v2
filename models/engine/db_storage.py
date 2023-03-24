@@ -60,3 +60,27 @@ class DBStorage():
         if obj:
             self.__session.delete(obj)
             self.save()
+
+    def reload(self):
+        """create all tables in the db"""
+        from models.base_model import Base
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.user import User
+        from models.review import Review
+        from models.place import Place
+        from sqlalchemy.orm import sessionmaker, scoped_session
+
+        if getenv("HBNB_ENV") == "test":
+            Base.metadata.drop_all(self.__engine)
+        Base.metadata.create_all(self.__engine)
+
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session()
+
+    def close(self):
+        """Close session"""
+        self.__session.close()
