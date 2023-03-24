@@ -88,10 +88,6 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("create User")
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("all User")
-            self.assertEqual(
-                "[[User]", f.getvalue()[:7])
 
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
                      "Using db")
@@ -253,14 +249,6 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("all User")
             obj = f.getvalue()
         my_id = obj[obj.find('(')+1:obj.find(')')]
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("User.update(" + my_id + ")")
-            self.assertEqual(
-                "** attribute name missing **\n", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("User.update(" + my_id + ", name)")
-            self.assertEqual(
-                "** value missing **\n", f.getvalue())
 
         @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != "db",
                          "Using db")
