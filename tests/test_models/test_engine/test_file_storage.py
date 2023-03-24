@@ -111,7 +111,7 @@ class TestFileStorage(unittest.TestCase):
         fs.save()
         self.assertIn(new_state, fs.all(State).values())
         fs.delete(new_state)
-        self.assertNotIn(new_state, fs.all(State).values())
+        self.assertNotIn(fs.all(State).values())
 
 if __name__ == "__main__":
     unittest.main()
