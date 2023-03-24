@@ -50,3 +50,13 @@ class DBStorage():
         if not obj:
             return
         self.__session.add(obj)
+
+    def save(self):
+        """commit changes to db"""
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        """delete obj from db"""
+        if obj:
+            self.__session.delete(obj)
+            self.save()
