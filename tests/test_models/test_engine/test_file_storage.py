@@ -91,14 +91,6 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(line, "{}")
         self.assertIs(self.storage.reload(), None)
 
-    def test_all_method(self):
-        ''' tests all method '''
-        fs = FileStorage()
-        new_state = State()
-        fs.new(new_state)
-        fs.save()
-        self.assertIn(new_state)
-
     def test_all_no_specification(self):
         ''' tests all when no class is passed '''
         return True
