@@ -97,7 +97,7 @@ class TestFileStorage(unittest.TestCase):
         new_state = State()
         fs.new(new_state)
         fs.save()
-        self.assertIn(new_state, fs.all(State).values())
+        self.assertIn(new_state)
 
     def test_all_no_specification(self):
         ''' tests all when no class is passed '''
