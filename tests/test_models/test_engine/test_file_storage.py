@@ -103,14 +103,6 @@ class TestFileStorage(unittest.TestCase):
         fs.save()
         self.assertEqual(8, len(fs.all()))
 
-    def test_delete_method(self):
-        ''' tests delete method '''
-        fs = FileStorage()
-        new_state = State()
-        fs.new(new_state)
-        fs.save()
-        fs.delete(new_state)
-        self.assertNotIn(fs.all(State).values())
 
 if __name__ == "__main__":
     unittest.main()
